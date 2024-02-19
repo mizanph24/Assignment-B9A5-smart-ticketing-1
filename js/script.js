@@ -4,7 +4,9 @@ const allBtn = document.getElementsByClassName("seat-btn");
 let seatCount = 0;
 
 let seatLeft = 40;
+const ticketPrice = 550;
 
+// let totalPrice = seatCount * ticketPrice;
 for (const btn of allBtn) {
     btn.addEventListener("click", function (e) {
         
@@ -18,7 +20,7 @@ for (const btn of allBtn) {
 
         const seatNumber = e.target.innerText;
         const seatClass = "Economy";
-        const ticketPrice = 550;
+        // const ticketPrice = 550;
 
 
         const div = document.createElement("div");
@@ -36,28 +38,42 @@ for (const btn of allBtn) {
 
         let totalPrice = seatCount * ticketPrice;
         setInnerText("total-price", totalPrice)
+        setInnerText("grand-total", totalPrice)
         
-        setBackgroundColorByClassName(seat-btn)
-        btn.classList.add('bg-green-400');
         
+        return totalPrice;
     });
 }
 
 const apply = document.getElementById("apply-btn");
 
-apply.addEventListener("click", function () {
-
+apply.addEventListener("click", function (e) {
+    
     const couponElement = document.getElementById("coupon").value;
 
     const couponCode = couponElement.split(" ").join("").toUpperCase();
-    
-    if (parseInt(totalPrice) == 2200) {
+    // console.log(couponCode)
+    const totalTicketPrice= document.getElementById("total-price").innerText;
+    const totalTicketPriceNumber= parseInt(totalTicketPrice)
+    console.log(typeof totalTicketPriceNumber)
+
+
+    if (totalTicketPriceNumber == 2200) {
+        
         if(couponCode === "NEW15"){
             const grandTotalElement = document.getElementById("grand-total");
-            const discount = totalPrice*.15;
-            const grandTotal = totalPrice-discount;
+            const discount = totalTicketPriceNumber*.15;
+            const grandTotal = totalTicketPriceNumber-discount;
             console.log(couponCode)
             grandTotalElement.innerText = grandTotal.toFixed(2);
+            hideElementById("coupon-area")
+        }
+        // if(couponCode ==="Couple 20"){
+        //     const discount = totalTicketPriceNumber*.20;
+        //     const grandTotal = totalTicketPriceNumber-discount;
+
+        //     grandTotalElement.innerText = grandTotal.toFixed(2);
+            
         }
         else{
             alert("Invalid Coupon")
