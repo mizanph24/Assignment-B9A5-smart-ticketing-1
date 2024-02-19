@@ -1,3 +1,9 @@
+document.getElementById("bye-ticket").addEventListener("click", function () {
+    // Scroll to the P.H. Paribabahan  section
+    document.getElementById("seat-book").scrollIntoView({ behavior: "smooth" });
+  });
+
+
 
 const allBtn = document.getElementsByClassName("seat-btn");
 
